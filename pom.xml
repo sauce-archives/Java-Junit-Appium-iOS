@@ -73,7 +73,6 @@
                     <threadCount>10</threadCount>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                     <systemPropertyVariables>
-                        <devAppPath>${project.basedir}/resources/GuineaPig-device-debug.app.zip</devAppPath>
                         <simAppPath>${project.basedir}/resources/GuineaPig-sim-debug.app.zip</simAppPath>
                     </systemPropertyVariables>
                 </configuration>

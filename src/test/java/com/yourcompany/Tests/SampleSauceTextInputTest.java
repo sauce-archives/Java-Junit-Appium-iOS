@@ -55,8 +55,8 @@ public class SampleSauceTextInputTest extends SampleSauceTestBase {
      *
      * @throws InvalidElementStateException
      */
-    //@Test
-    //@Retry
+    @Test
+    @Retry
     public void verifyCommentInputTest() throws InvalidElementStateException {
         String commentInputText = UUID.randomUUID().toString();
 

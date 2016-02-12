@@ -46,7 +46,6 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
     public static String seleniumURI;
     public static String buildTag = System.getenv("BUILD_TAG");
     public static String simApp = null;
-    public static String devApp = null;
     public static String username = System.getenv("SAUCE_USERNAME");
     public static String accessKey = System.getenv("SAUCE_ACCESS_KEY");
     /**
@@ -140,10 +139,6 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
     public static LinkedList browsersStrings() {
         LinkedList<String[]> browsers = new LinkedList<>();
 
-
-        browsers.add(new String[]{"iOS", "iPhone 6 Device", "8.4", "1.4.16", "portrait"});
-        browsers.add(new String[]{"iOS", "iPhone 6 Device", "8.0", "1.4.16", "portrait"});
-
         browsers.add(new String[]{"iOS", "iPhone 6", "8.4", "1.4.16", "portrait"});
         browsers.add(new String[]{"iOS", "iPhone 6", "9.1", "1.4.16", "portrait"});
 
@@ -156,16 +151,11 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
         seleniumURI = SauceHelpers.buildSauceUri();
         //You can set this manually on manual runs.
         simApp = System.getProperty("simAppPath");
-        devApp = System.getProperty("devAppPath");
+
         if (simApp != null){
             simApp = SauceHelpers.uploadAppToSauceStorage(simApp, username, accessKey);
         } else {
             System.err.println("No simulator app no simulator test! " + simApp);
-        }
-        if (devApp != null){
-            devApp = SauceHelpers.uploadAppToSauceStorage(devApp, username, accessKey);
-        } else {
-            System.err.println("No device app no device test! " + devApp);
         }
     }
 
@@ -192,18 +182,11 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability("deviceOrientation", this.deviceOrientation);
         if (this.appiumVersion != null)
             capabilities.setCapability("appiumVersion", this.appiumVersion);
+        if (simApp != null)
+            capabilities.setCapability("app", simApp);
+        else
+            throw new Exception("App path for simulator app needs to be specified for this test to run!");
 
-        if(this.deviceName.toLowerCase().contains("device")) {
-            if (devApp != null)
-                capabilities.setCapability("app", devApp);
-            else
-                throw new Exception("App path for device app needs to be specified for this test to run!");
-        } else {
-            if (simApp != null)
-                capabilities.setCapability("app", simApp);
-            else
-                throw new Exception("App path for simulator app needs to be specified for this test to run!");
-        }
 
         String methodName = name.getMethodName();
         capabilities.setCapability("name", methodName);
