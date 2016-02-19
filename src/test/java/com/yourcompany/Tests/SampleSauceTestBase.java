@@ -142,7 +142,6 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
 
 
         browsers.add(new String[]{"iOS", "iPhone 6 Device", "8.4", "1.4.16", "portrait"});
-        browsers.add(new String[]{"iOS", "iPhone 6 Device", "8.0", "1.4.16", "portrait"});
 
         browsers.add(new String[]{"iOS", "iPhone 6", "8.4", "1.4.16", "portrait"});
         browsers.add(new String[]{"iOS", "iPhone 6", "9.1", "1.4.16", "portrait"});
@@ -233,5 +232,6 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
     @Override
     public String getSessionId() {
         return sessionId;
+
     }
 }
