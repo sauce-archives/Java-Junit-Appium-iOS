@@ -14,7 +14,6 @@ import org.junit.*;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -23,6 +22,7 @@ import com.saucelabs.junit.SauceOnDemandTestWatcher;
 
 import java.net.URL;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
 import com.yourcompany.Utils.*;
@@ -197,7 +197,7 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
         if (buildTag != null) {
             capabilities.setCapability("build", buildTag);
         }
-
+        HttpParamSetter.setTimeouts(0, (int)TimeUnit.MINUTES.toMillis(3));
         this.driver = new IOSDriver(
                 new URL("http://" + username + ":" + accessKey + seleniumURI + "/wd/hub"),
                 capabilities);

@@ -21,7 +21,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.48.2</version>
+            <version>2.52.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -51,7 +51,11 @@
             <artifactId>sauce_junit</artifactId>
             <version>2.1.20</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>1.6.4</version>
+        </dependency>
     </dependencies>
 
     <build>
