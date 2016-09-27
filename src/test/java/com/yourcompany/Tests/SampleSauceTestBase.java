@@ -199,7 +199,7 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
         }
 
         this.driver = new IOSDriver(
-                new URL("http://" + username + ":" + accessKey + seleniumURI + "/wd/hub"),
+                new URL("https://" + username + ":" + accessKey + seleniumURI + "/wd/hub"),
                 capabilities);
 
         this.sessionId = driver.getSessionId().toString();
