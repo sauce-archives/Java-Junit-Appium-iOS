@@ -45,7 +45,7 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
 
     public static String seleniumURI;
     public static String buildTag = System.getenv("BUILD_TAG");
-    public static String simApp = null;
+    public static String app = "https://github.com/saucelabs-sample-test-frameworks/Java-Junit-Appium-iOS/blob/master/resources/GuineaPig-sim-debug.app.zip?raw=true";
     public static String username = System.getenv("SAUCE_USERNAME");
     public static String accessKey = System.getenv("SAUCE_ACCESS_KEY");
     /**
@@ -149,14 +149,6 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
     public static void setupClass() throws Exception{
         //get the uri to send the commands to.
         seleniumURI = SauceHelpers.buildSauceUri();
-        //You can set this manually on manual runs.
-        simApp = System.getProperty("simAppPath");
-
-        if (simApp != null){
-            simApp = SauceHelpers.uploadAppToSauceStorage(simApp, username, accessKey);
-        } else {
-            System.err.println("No simulator app no simulator test! " + simApp);
-        }
     }
 
     /**
@@ -182,8 +174,8 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
             capabilities.setCapability("deviceOrientation", this.deviceOrientation);
         if (this.appiumVersion != null)
             capabilities.setCapability("appiumVersion", this.appiumVersion);
-        if (simApp != null)
-            capabilities.setCapability("app", simApp);
+        if (app != null)
+            capabilities.setCapability("app", app);
         else
             throw new Exception("App path for simulator app needs to be specified for this test to run!");
 

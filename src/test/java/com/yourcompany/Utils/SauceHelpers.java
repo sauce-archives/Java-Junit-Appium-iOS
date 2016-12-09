@@ -46,36 +46,4 @@ public class SauceHelpers {
         return buildSauceUri(false);
     }
 
-    public static String uploadAppToSauceStorage(
-            String appFullPath, String username, String password) throws Exception {
-        String appURI = null;
-        String fileURI = "sauce-storage:%s";
-        //upload the app file to sauce storage.
-        File file = new File(appFullPath);
-        String srcMD5 = getFileMD5(file);
-        String fileName = file.getName();
-        SauceREST sauceREST = new SauceREST(username, password);
-        String dstMD5 = sauceREST.uploadFile(new File(appFullPath));
-        if (!srcMD5.contentEquals(dstMD5)) {
-            throw new Exception("File upload failed! MD5 signatures do not match!");
-        } else {
-            appURI = String.format(fileURI, fileName);
-            System.out.printf("File: %s uploaded successfully!\n", appFullPath);
-        }
-        return appURI;
-    }
-
-    public static String getFileMD5(File file) throws IOException {
-        if (file == null || !file.exists()) {
-            throw new FileNotFoundException(
-                    "Please set your APP file location in APP build config field in gradle and " +
-                            "try again!" +
-                            "File name: " + file.getAbsolutePath());
-        }
-        FileInputStream fis = new FileInputStream(file);
-        String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(fis);
-        fis.close();
-        return md5;
-    }
-
 }
