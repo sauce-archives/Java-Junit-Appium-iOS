@@ -39,11 +39,11 @@ import io.appium.java_client.AppiumDriver;
 @RunWith(ConcurrentParameterized.class)
 public class TestBase implements SauceOnDemandSessionIdProvider {
 
-    public static String seleniumURI = "@ondemand.saucelabs.com:443";
-    public static String buildTag = System.getenv("BUILD_TAG");
-    public static String app = "https://github.com/saucelabs-sample-test-frameworks/Java-Junit-Appium-iOS/blob/master/resources/GuineaPig-sim-debug.app.zip?raw=true";
     public static String username = System.getenv("SAUCE_USERNAME");
     public static String accessKey = System.getenv("SAUCE_ACCESS_KEY");
+    public static String seleniumURI;
+    public static String buildTag;
+    public static String app;
     /**
      * Constructs a {@link SauceOnDemandAuthentication} instance using the supplied user name/access
      * key.  To use the authentication supplied by environment variables or from an external file,
@@ -192,5 +192,16 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
     @Override
     public String getSessionId() {
         return sessionId;
+    }
+
+    @BeforeClass
+    public static void setupClass(){
+        //get the uri to send the commands to.
+        seleniumURI = "@ondemand.saucelabs.com:443";
+        //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
+        //You can set this manually on manual runs.
+        buildTag = System.getenv("BUILD_TAG");
+
+        app = "https://github.com/saucelabs-sample-test-frameworks/Java-Junit-Appium-iOS/blob/master/resources/GuineaPig-sim-debug.app.zip?raw=true";
     }
 }
