@@ -25,7 +25,6 @@ import java.net.URL;
 import java.util.LinkedList;
 
 import com.saucelabs.common.SauceOnDemandSessionIdProvider;
-import com.yourcompany.Utils.*;
 
 import io.appium.java_client.AppiumDriver;
 
@@ -43,7 +42,7 @@ import io.appium.java_client.AppiumDriver;
 @RunWith(ConcurrentParameterized.class)
 public class TestBase implements SauceOnDemandSessionIdProvider {
 
-    public static String seleniumURI;
+    public static String seleniumURI = "@ondemand.saucelabs.com:443";
     public static String buildTag = System.getenv("BUILD_TAG");
     public static String app = "https://github.com/saucelabs-sample-test-frameworks/Java-Junit-Appium-iOS/blob/master/resources/GuineaPig-sim-debug.app.zip?raw=true";
     public static String username = System.getenv("SAUCE_USERNAME");
@@ -143,12 +142,6 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         browsers.add(new String[]{"iOS", "iPhone 6", "9.1", "1.4.16", "portrait"});
 
         return browsers;
-    }
-
-    @BeforeClass
-    public static void setupClass() throws Exception{
-        //get the uri to send the commands to.
-        seleniumURI = SauceHelpers.buildSauceUri();
     }
 
     /**
