@@ -7,14 +7,11 @@ package com.yourcompany.Tests;
 
 import com.saucelabs.common.SauceOnDemandAuthentication;
 
-import com.yourcompany.TestRules.RetryRule;
-
 import io.appium.java_client.ios.IOSDriver;
 import org.junit.*;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -66,12 +63,6 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
             return String.format("%s", super.getMethodName());
         }
     };
-
-    /**
-     * Test decorated with @Retry will be run 3 times in case they fail using this rule.
-     */
-    @Rule
-    public RetryRule rule = new RetryRule(3);
 
     /**
      * Represents the browser to be used as part of the test run.
