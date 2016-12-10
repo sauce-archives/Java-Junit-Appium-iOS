@@ -41,7 +41,7 @@ import io.appium.java_client.AppiumDriver;
  */
 @Ignore
 @RunWith(ConcurrentParameterized.class)
-public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
+public class TestBase implements SauceOnDemandSessionIdProvider {
 
     public static String seleniumURI;
     public static String buildTag = System.getenv("BUILD_TAG");
@@ -117,7 +117,7 @@ public class SampleSauceTestBase implements SauceOnDemandSessionIdProvider {
      * @param deviceOrientation device orientation
      */
 
-    public SampleSauceTestBase(
+    public TestBase(
             String platformName,
             String deviceName,
             String platformVersion,

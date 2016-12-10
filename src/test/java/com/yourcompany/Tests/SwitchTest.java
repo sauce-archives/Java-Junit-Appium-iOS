@@ -10,10 +10,10 @@ import static org.junit.Assert.*;
  * Created by mehmetgerceker on 12/22/15.
  */
 
-public class SampleSauceSwitchTest extends SampleSauceTestBase {
+public class SwitchTest extends TestBase {
 
-    public SampleSauceSwitchTest(String os,
-                                   String version, String browser, String deviceName, String deviceOrientation) {
+    public SwitchTest(String os,
+                      String version, String browser, String deviceName, String deviceOrientation) {
         super(os, version, browser, deviceName, deviceOrientation);
     }
 
