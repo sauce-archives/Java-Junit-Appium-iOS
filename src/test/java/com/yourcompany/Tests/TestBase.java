@@ -64,34 +64,12 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         }
     };
 
-    /**
-     * Represents the browser to be used as part of the test run.
-     */
     protected String platformName;
-    /**
-     * Represents the operating system to be used as part of the test run.
-     */
     protected String appiumVersion;
-    /**
-     * Represents the version of the browser to be used as part of the test run.
-     */
     protected String platformVersion;
-    /**
-     * Represents the deviceName of mobile device
-     */
     protected String deviceName;
-    /**
-     * Represents the device-orientation of mobile device
-     */
     protected String deviceOrientation;
-    /**
-     * Instance variable which contains the Sauce Job Id.
-     */
     protected String sessionId;
-
-    /**
-     * The {@link WebDriver} instance which is used to perform browser interactions with.
-     */
     protected AppiumDriver driver;
 
     /**
@@ -129,9 +107,8 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
     public static LinkedList browsersStrings() {
         LinkedList<String[]> browsers = new LinkedList<>();
 
-        browsers.add(new String[]{"iOS", "iPhone 7 Simulator", "10.0", "1.6.1", "portrait"});
-        browsers.add(new String[]{"iOS", "iPad Air Simulator", "9.3", "1.6.1", "portrait"});
-        browsers.add(new String[]{"iOS", "iPhone 6 Device", "9.3", "1.5.3", "portrait"});
+        browsers.add(new String[]{"iOS", "iPhone 7 Simulator", "10.0", "1.6", "portrait"});
+        browsers.add(new String[]{"iOS", "iPad Air Simulator", "9.3", "1.6", "portrait"});
 
         return browsers;
     }
@@ -143,26 +120,18 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
      * the username and access key populated by the {@link #authentication} instance.
      *
      * @throws Exception if an error occurs during the creation of the {@link RemoteWebDriver}
-     * instance.
+     *                   instance.
      */
     @Before
     public void setUp() throws Exception {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        if (this.platformName != null)
-            capabilities.setCapability("platformName", this.platformName);
-        if (this.platformVersion != null)
-            capabilities.setCapability("platformVersion", this.platformVersion);
-        if (this.deviceName != null)
-            capabilities.setCapability("deviceName", this.deviceName);
-        if (this.deviceOrientation != null)
-            capabilities.setCapability("deviceOrientation", this.deviceOrientation);
-        if (this.appiumVersion != null)
-            capabilities.setCapability("appiumVersion", this.appiumVersion);
-        if (app != null)
-            capabilities.setCapability("app", app);
-        else
-            throw new Exception("App path for simulator app needs to be specified for this test to run!");
+        capabilities.setCapability("platformName", this.platformName);
+        capabilities.setCapability("platformVersion", this.platformVersion);
+        capabilities.setCapability("deviceName", this.deviceName);
+        capabilities.setCapability("deviceOrientation", this.deviceOrientation);
+        capabilities.setCapability("appiumVersion", this.appiumVersion);
+        capabilities.setCapability("app", app);
 
 
         String methodName = name.getMethodName();
@@ -196,7 +165,7 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
     }
 
     @BeforeClass
-    public static void setupClass(){
+    public static void setupClass() {
         //get the uri to send the commands to.
         seleniumURI = "@ondemand.saucelabs.com:443";
         //If available add build tag. When running under Jenkins BUILD_TAG is automatically set.
