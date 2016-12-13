@@ -172,6 +172,6 @@ public class TestBase implements SauceOnDemandSessionIdProvider {
         //You can set this manually on manual runs.
         buildTag = System.getenv("BUILD_TAG");
 
-        app = "https://github.com/saucelabs-sample-test-frameworks/Java-Junit-Appium-iOS/blob/master/resources/GuineaPig-sim-debug.app.zip?raw=true";
+        app = "https://github.com/saucelabs-sample-test-frameworks/Java-Junit-Appium-iOS/blob/master/resources/SauceGuineaPig-sim-debug.app.zip?raw=true";
     }
 }
